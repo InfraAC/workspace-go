@@ -1,0 +1,3 @@
+docker-19.03.3.linux-x86_64/docker-client
+go1.17.5.linux-amd64/go.tar.gz
+kubectl-v1.19.2.linux-amd64/kubectl
