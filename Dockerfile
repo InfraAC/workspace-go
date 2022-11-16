@@ -20,19 +20,19 @@ RUN echo 'root:123456'|chpasswd && \
     sed -ri --expression 's/^#(PermitRootLogin\s+).*/\1yes/' /etc/ssh/sshd_config &&\
     sed -ri --expression 's/^#(GatewayPorts\s+).*/\1yes/' /etc/ssh/sshd_config
 
-COPY ./go1.17.5.linux-amd64/go.tar.gz /tmp
+COPY ./go/go.tar.gz /tmp
 RUN tar -C /usr/local -xzf /tmp/go.tar.gz && \
     rm -f /tmp/* && \
     echo 'export PATH=/usr/local/go/bin:$PATH' >> /root/.bashrc
 
 # install docker: only client
-COPY ./docker-19.03.3.linux-x86_64/docker-client /usr/bin/docker
+COPY ./docker/docker-client /usr/bin/docker
 RUN chmod +x /usr/bin/docker && groupadd docker
 
 # install kubectl
 # curl -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/v1.19.2/bin/linux/amd64/kubectl && \
 #     chmod +x /usr/local/bin/kubectl
-COPY ./kubectl-v1.19.2.linux-amd64/kubectl /usr/local/bin/
+COPY ./kubectl/kubectl /usr/local/bin/
 RUN chmod +x /usr/local/bin/kubectl
 
 # #install docker-compose
