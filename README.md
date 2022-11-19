@@ -13,7 +13,10 @@
     linux运行
         docker run -d --privileged --name workspace -p 22:22 -v /var/run/docker.sock:/var/run/docker.sock -v /Users/eric/work:/root/work workspace:1.0.1
     mac运行
-        docker run -d --privileged --network=bridge -p 22:22 --name workspace -v /var/run/docker.sock:/var/run/docker.sock -v /Users/eric/work:/root/work workspace:1.0.1
+        docker run -d --privileged --network=bridge -p 22:22 -p 8080-9090:8080:9090 --name workspace -v /var/run/docker.sock:/var/run/docker.sock -v /Users/eric/work:/root/work workspace:1.0.1
+        注意
+          Mac访问容器网络需桥接，当然还有其它方式
+          8080-9090端口为备用端口
     windows运行
         # Expose daemon on tcp://宿主机ip:2375 without TLS
         # New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL)"  -Action Allow
